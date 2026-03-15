@@ -40,7 +40,7 @@ The FSM is the center of the system’s behavior. It handles state transitions b
 
 ## Finite State Machine
 
-![FSM Diagram]("C:\Users\awood\Pictures\Screenshots\Screenshot 2026-03-15 162429.png")
+![FSM Diagram](C:\Users\awood\Pictures\Screenshots\Screenshot 2026-03-15 162429.png)
 
 The behavior of Desk Buddy is controlled using a finite state machine that manages the different phases of the Pomodoro workflow. The system moves between states based on user input from the IR remote, timer events, and shake detection from the accelerometer. The state machine allows the device to control when the timer is running, paused, or finished, while also determining how the display, LED, and buzzer should behave. When the device first starts, it enters the SELECT state. In this state, the user chooses one of the available sprite sets using the number buttons on the IR remote. Once a sprite is selected, the system transitions to the IDLE state. In the IDLE state, the device waits for the user to begin a work session. The OLED display shows the current mode and the timer, but no countdown is active yet.  
 
