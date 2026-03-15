@@ -56,7 +56,7 @@ We selected package pins 61, 62, 18, 7, and 5 for these connections from the mic
 
 #### SPI Configuration
 
-In our `main` program, we set the SPI bit rate to 4 MHz for default data transfer. This could have been increased to 8 MHz if needed for faster refresh.
+In our **`main`** program, we set the SPI bit rate to 4 MHz for default data transfer. This could have been increased to 8 MHz if needed for faster refresh.
 For initialization, we first reset the SPI controller and clear buffers. For the configuration settings, we chose to set our microcontroller as the master, the 8-bit word length to match communication with our peripheral, and three pin mode which allows us to manually choose the peripheral though toggling our GPIO pin. After configuration, we enabled the SPI channel.
 
 #### Adafruit SSD1351 Library
@@ -77,10 +77,41 @@ Like `writeCommand`, except the DC signal is set to high to signify it as a data
 From the Adafruit open-source graphics library `Adafruit_GFX.c`, take advantage of the `drawChar()` function to display characters on our OLED. Our custom created `drawText()` function takes in a string and uses a for loop to display the characters. 
 
 #### *Draw Select Screen*
+The home screen that appears after initialization uses the “drawText()” function to list the names of the characters you can select. 
 
 #### *Draw Layout*
 
+The title and instructions are not updated dynamically.
+
 ## Accelerometer
+
+### Inter-Integrated Circuit (I2C) Communication
+
+#### *GPIO Pin Setup*
+To enable the I2C channel for reading the on-board accelerometer, we set up two pins to carry the Serial Clock (SCL) and Serial Data (SDA) signals. The package pins pin 1 and 2 were selected respectively for `PIN_MODE_1` for I2C communication. 
+
+#### *Initialization*
+To enable the I2C peripheral, we call the `I2C_IF_OPEN()` function in fast mode (400 Kbps), which enables the I2C peripheral along with interrupts from the `i2c_if` file included in the `i2c_demo` file. 
+
+#### Shake Detection
+
+#### *Reading the Accelerometer*
+To read the onboard BMA222 Bosch accelerometer, we access and store the register values `0x03` and `0x05`. These two 8-bit registers store the x-axis and y-axis acceleration data. The `I2C_IF_ReadFrom()` function reads the device address `0x18`, and we read four data bytes from the consecutive registers `0x02`-`0x05` and extract the needed values. These values are cast to a signed 8-bit integer and promoted to a 16-bit integer and stored in memory locations. 
+
+#### *Determining a Shake Event*
+
+To determine a shake event, we take the current SysTick time value and store it in a variable. We set a variable for shake cooldown to prevent the shake event to be continuously triggered. 
+
+The magnitude is calculated by determining if the sum of the absolute value of the acceleration data values is greater than forty. If so, the shake event flag is set and tracks the time occurred after calculation (1.2 ms). 
+The shake detection threshold was chosen to ensure that normal desk vibrations or small movements would not trigger a false shake event. During testing, several threshold values were tested and evaluated by observing the accelerometer readings while the device was stationary, lightly moved, and then intentionally shaken. 
+
+Lower threshold values caused the system to trigger shake events too easily due to small vibrations or normal handling of the device. Increasing the threshold reduced these false detections. A threshold value of about 40 for the combined acceleration magnitude provided a good balance between responsiveness and stability. This value allowed the system to reliably detect intentional shake gestures while ignoring minor noise in the accelerometer readings. 
+
+The cooldown period was also adjusted and tested. Without a cooldown, multiple shake events could be triggered rapidly from a single motion due to sensor noise and rapid changes in acceleration. By introducing a cooldown delay of approximately 1.2 seconds, the system makes sure that only one shake event is registered for each user action. This makes the alarm acknowledgement behavior more consistent and prevents unintended multiple triggers. 
+
+#### *Accelerometer Polling*
+
+Every 20 ms, the accelerometer is polled by reading the accelerometer values and checking for a shake event.
 
 ## AWS
 
