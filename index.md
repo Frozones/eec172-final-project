@@ -44,7 +44,7 @@ The IR interface uses a three pin IR receiver module with Vs, OUT, and GND. The 
 
 ## OLED Display
 
-**### Serial Peripheral Interface (SPI) Communication**
+### **Serial Peripheral Interface (SPI) Communication**
 ### 
 
 ## Accelerometer
