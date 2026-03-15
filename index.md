@@ -60,11 +60,11 @@ For initialization, we first reset the SPI controller and clear buffers. For the
 
 To communicate with the OLED through SPI, the peripheral must be able to distinguish between writing commands and data. The “Adafruit_Init()” function from “Adafruit_OLED.c” is called in “main.c” after enabling the SPI channel. 
 
-##### Write Command
+###### Write Command
 
 The CS signal is set low, and the DC signal is set low to transmit the command byte. We put the byte on the SPI line, clear the byte, and set CS high to the end the transmission.
 
-##### Write Data
+###### Write Data
 
 Like “writeCommand”, except the DC signal is set to high to signify it as a data byte.
 
