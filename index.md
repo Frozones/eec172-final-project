@@ -4,7 +4,7 @@ title: Final Project
 
 # Overview
 
-Desk Buddy is a standalone embedded device designed to help students stay focused while studying by following a Pomodoro-style work and break cycle. The goal of the project was to build a small desk companion that helps users manage their focus time without needing to rely on a phone or computer. The device uses an OLED display to show the countdown timer and the current system mode, such as SELECT, IDLE, RUN, BREAK, PAUSE, and ALARM. The user interacts with the system using an IR remote, which allows them to choose a sprite, start a work session, pause the timer, reset the system, or switch to break mode without needing to use a terminal or connect to a computer.
+Desk Buddy is a standalone embedded device designed to help students stay focused while studying by following a Pomodoro-style work and break cycle. The goal of the project was to build a small desk companion that helps users manage their focus time without needing to rely on a phone or computer. The device uses an OLED display to show the countdown timer and the current system mode, such as `SELECT`, `IDLE`, `RUN`, `BREAK`, `PAUSE`, and `ALARM`. The user interacts with the system using an IR remote, which allows them to choose a sprite, start a work session, pause the timer, reset the system, or switch to break mode without needing to use a terminal or connect to a computer.
 
 ## Goals
 - Implement Pomodoro Timer
@@ -15,7 +15,7 @@ Desk Buddy is a standalone embedded device designed to help students stay focuse
 
 ### Functional Specification
 
-The behavior of Desk Buddy is controlled using a finite state machine that manages the different phases of the Pomodoro workflow. The system moves between states based on user input from the IR remote, timer events, and shake detection from the accelerometer. The state machine allows the device to control when the timer is running, paused, or finished, while also determining how the display, LED, and buzzer should behave. When the device first starts, it enters the SELECT state. In this state, the user chooses one of the available sprite sets using the number buttons on the IR remote. Once a sprite is selected, the system transitions to the IDLE state. In the IDLE state, the device waits for the user to begin a work session. The OLED display shows the current mode and the timer, but no countdown is active yet. 
+The behavior of Desk Buddy is controlled using a finite state machine that manages the different phases of the Pomodoro workflow. The system moves between states based on user input from the IR remote, timer events, and shake detection from the accelerometer. The state machine allows the device to control when the timer is running, paused, or finished, while also determining how the display, LED, and buzzer should behave. When the device first starts, it enters the `SELECT` state. In this state, the user chooses one of the available sprite sets using the number buttons on the IR remote. Once a sprite is selected, the system transitions to the IDLE state. In the `IDLE` state, the device waits for the user to begin a work session. The OLED display shows the current mode and the timer, but no countdown is active yet. 
 When the user presses the start button, the system moves into the RUNNING state and begins the work timer countdown. While the timer is running, the user can pause the timer, reset the session, or manually switch to a break. If the pause command is used, the system transitions to the PAUSED state, where the remaining time is preserved until the user resumes the timer or resets the system. If the work timer reaches zero, the device enters the ALARM condition. During this time, the buzzer sounds and the RGB LED blinks to notify the user that the session has finished. The alarm remains active until the user physically shakes the device. The accelerometer detects this shake gesture and acknowledges the alarm. 
 After the alarm is acknowledged, the next state depends on which timer finishes. If the alarm occurs after a work session, the system transitions into the BREAK state and begins the break timer. If the alarm occurs after a break session, the system returns to the IDLE state and waits for the user to start another work session. Overall, the state machine ensures that the device follows the full cycle of selecting a character, starting a work session, optionally pausing or resetting, completing the session, and transitioning into a break period before returning to idle. This structure allows the device to consistently manage the Pomodoro workflow while responding to user input and timer events. 
 
@@ -53,28 +53,29 @@ We selected package pins 61, 62, 18, 7, and 5 for these connections from the mic
 
 #### SPI Configuration
 
-In our “main.c” file, we set the SPI bit rate to 4 MHz for default data transfer. This could have been increased to 8 MHz if needed for faster refresh.
+In our `main` program, we set the SPI bit rate to 4 MHz for default data transfer. This could have been increased to 8 MHz if needed for faster refresh.
 For initialization, we first reset the SPI controller and clear buffers. For the configuration settings, we chose to set our microcontroller as the master, the 8-bit word length to match communication with our peripheral, and three pin mode which allows us to manually choose the peripheral though toggling our GPIO pin. After configuration, we enabled the SPI channel.
 
 #### Adafruit SSD1351 Library
 
-To communicate with the OLED through SPI, the peripheral must be able to distinguish between writing commands and data. The “Adafruit_Init()” function from “Adafruit_OLED.c” is called in “main.c” after enabling the SPI channel. 
+To communicate with the OLED through SPI, the peripheral must be able to distinguish between writing commands and data. The `“`Adafruit_Init()`”` function from the `Adafruit_OLED` program is called in `main` after enabling the SPI channel. 
 
 ##### *Write Command*
 
 The CS signal is set low, and the DC signal is set low to transmit the command byte. We put the byte on the SPI line, clear the byte, and set CS high to the end the transmission.
 
-###### Write Data
+#### *Write Data*
 
-Like “writeCommand”, except the DC signal is set to high to signify it as a data byte.
+Like `writeCommand`, except the DC signal is set to high to signify it as a data byte.
 
 #### Update UI
 
-##### Formatting, Displaying, and Clearing Text
+#### *Formatting, Displaying, and Clearing Text*
+From the Adafruit open-source graphics library `Adafruit_GFX.c`, take advantage of the `drawChar()` function to display characters on our OLED. Our custom created `drawText()` function takes in a string and uses a for loop to display the characters. 
 
-##### Draw Select Screen
+#### *Draw Select Screen*
 
-##### Draw Layout
+#### *Draw Layout*
 
 ## Accelerometer
 
