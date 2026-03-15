@@ -2,9 +2,9 @@
 title: Final Project
 ---
 
-<!-- testing
+[comment]: # (this is a hidden comment)
 
---!>
+[//]: # just testing this # means header 1, #### means header 4
 
 
 # Overview
