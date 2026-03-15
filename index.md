@@ -2,7 +2,7 @@
 title: Final Project
 ---
 
-#Overview
+# Overview
 
 This project demonstrates a desk buddy.
 
@@ -11,8 +11,18 @@ This project demonstrates a desk buddy.
 - Detect shakes
 - Dictionary Search
 
+## Design
+
+### Functional Specification
+
+### System Architecture
+
+# Implementation
+
 ## Stretch Goals
 - Speech to Text
+
+## Challenges
 
 ## Hardware
 - CC3200 Board
