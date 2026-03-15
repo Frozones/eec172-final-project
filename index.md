@@ -44,8 +44,37 @@ The IR interface uses a three pin IR receiver module with Vs, OUT, and GND. The 
 
 ## OLED Display
 
-### **Serial Peripheral Interface (SPI) Communication**
-### GPIO Pin Setup
+### Serial Peripheral Interface (SPI) Communication
+
+#### GPIO Pin Setup
+
+The Adafruit SSD1351 OLED communicates through the SPI protocol. Five signals are required to control the OLED. This includes the Data/Command (DC), OLED Chip Select (CS), Reset, Master-Out-Slave-In (MOSI), and the SPI Clock (SC) signal. 
+We selected package pins 61, 62, 18, 7, and 5 for these connections from the microcontroller to our OLED. The GPIO pins are set as output as we are using the MOSI line.
+
+#### SPI Configuration
+
+In our “main.c” file, we set the SPI bit rate to 4 MHz for default data transfer. This could have been increased to 8 MHz if needed for faster refresh.
+For initialization, we first reset the SPI controller and clear buffers. For the configuration settings, we chose to set our microcontroller as the master, the 8-bit word length to match communication with our peripheral, and three pin mode which allows us to manually choose the peripheral though toggling our GPIO pin. After configuration, we enabled the SPI channel.
+
+#### Adafruit SSD1351 Library
+
+To communicate with the OLED through SPI, the peripheral must be able to distinguish between writing commands and data. The “Adafruit_Init()” function from “Adafruit_OLED.c” is called in “main.c” after enabling the SPI channel. 
+
+##### Write Command
+
+The CS signal is set low, and the DC signal is set low to transmit the command byte. We put the byte on the SPI line, clear the byte, and set CS high to the end the transmission.
+
+##### Write Data
+
+Like “writeCommand”, except the DC signal is set to high to signify it as a data byte.
+
+#### Update UI
+
+##### Formatting, Displaying, and Clearing Text
+
+##### Draw Select Screen
+
+##### Draw Layout
 
 ## Accelerometer
 
