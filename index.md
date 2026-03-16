@@ -30,6 +30,8 @@ After the alarm is acknowledged, the next state depends on which timer finishes.
 
 ### System Architecture
 
+![System Architecture Diagram](System_Architecture.png)
+
 The Desk Buddy system is built around the CC3200 microcontroller, which acts as the main controller for the entire system. The system is organized into several connected parts: the timer system, input modules, finite state machine, output modules, and AWS logging. These components work together so the device can respond to user input, run the Pomodoro timer, and provide feedback through the display, buzzer, LED, and cloud logging. 
 
 The main loop is responsible for coordinating the system. It continuously checks events from the timer, IR receiver, and accelerometer, then passes those events to the finite state machine (FSM) and updates the outputs when needed. The SysTick module provides the main time base for the project by generating a 1 millisecond tick, which is used to keep track of the countdown timer, uptime, and alarm timing. TimerA0 is used separately for the IR receiver so that the widths of the incoming IR pulses can be measured accurately for decoding remote control commands. The IR receiver allows the user to control the device using an IR remote. The received signal is captured as edges, then decoded into command values using NEC-style decoding. These decoded commands are passed to the FSM, which decides how the system should change states. The accelerometer is read over I2C and is used for shake detection. When the timer finishes and the alarm is active, a shake event is sent to the FSM logic to acknowledge the alarm and move to the next phase.  
