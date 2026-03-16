@@ -205,3 +205,17 @@ ChatGPT was used to summarize documentation, providing guidance on understanding
 # Video Demo
 
 <iframe src="https://drive.google.com/file/d/1OOU9uctRntvY3DELhxM5JtPAXOPRluTg/preview" width="640" height="480"></iframe>
+
+For this video, we’re demonstrating the final version of our project, Desk Buddy, which is a standalone Pomodoro device designed to help students stay on track during work and break sessions.
+
+When the device first starts, it displays the select screen, where the user can choose between four different sprite sets using the IR remote. Once a sprite set is selected, the system transitions to the main timer screen.
+
+From there, we start a work session using the IR remote. The OLED display shows the current mode and the countdown timer while the session is running. When the timer reaches zero, the system enters alarm mode. At that point, the RGB LED begins blinking red and the buzzer sounds to alert the user that the session has finished.
+
+To acknowledge the alarm, the user shakes the device. The onboard accelerometer detects this shake and uses it to move the system to the next phase. After a work session ends, the system transitions into break mode, and after the break timer finishes, the alarm activates again.
+
+In this demo, we repeat this process through four completed work sessions so we can demonstrate the leveling system. As the user completes more sessions, the sprite on the display updates to show different stages of progression. This allows us to show the level 1, level 2, and level 3 sprites during the demo. Notifications are sent through AWS to the user's email each time a session is completed, as well as the level status. 
+
+At the end of the video, we also demonstrate the manual controls available on the IR remote. These include the start, pause, reset, and break buttons, which allow the user to control the timer and switch between modes without interacting directly with the device.
+
+Overall, this demo shows the main functionality of Desk Buddy, including sprite selection, Pomodoro timer operation, alarm feedback through the LED and buzzer, shake detection using the accelerometer, and remote control through the IR interface.
