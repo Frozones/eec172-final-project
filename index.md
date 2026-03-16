@@ -208,6 +208,12 @@ ChatGPT was used to summarize documentation, providing guidance on understanding
 
 <iframe src="https://drive.google.com/file/d/1OOU9uctRntvY3DELhxM5JtPAXOPRluTg/preview" width="640" height="480"></iframe>
 
+<video controls width="600">
+<video src="video.mp4" muted controls style="max-width: 100%;">
+    Your browser does not support the video tag.
+</video>
+
+
 
 In this video, we’re demonstrating the final version of our project, Desk Buddy, which is a standalone Pomodoro device designed to help students stay on track during work and break sessions.
 
