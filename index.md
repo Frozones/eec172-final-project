@@ -206,10 +206,9 @@ ChatGPT was used to summarize documentation, providing guidance on understanding
 
 # Video Demo
 
-<iframe src="https://drive.google.com/file/d/1OOU9uctRntvY3DELhxM5JtPAXOPRluTg/preview" width="640" height="480"></iframe>
+<!---<iframe src="https://drive.google.com/file/d/1OOU9uctRntvY3DELhxM5JtPAXOPRluTg/preview" width="640" height="480"></iframe>--->
 
-<video controls width="600">
-<video src="final.mp4" muted controls style="max-width: 100%;">
+<video src="https://github.com/Frozones/eec172-final-project/blob/main/final.mp4" controls autoplay muted style="max-width: 100%;">
     Your browser does not support the video tag.
 </video>
 
