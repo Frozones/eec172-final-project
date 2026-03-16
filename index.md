@@ -149,23 +149,19 @@ When a focus session is completed, the program constructs a JSON message contain
 
 An RGB LED was used to provide visual feedback about the current state of the Desk Buddy system. The LED helps show the system behavior without requiring the user to constantly look at the OLED display.  
 
-Hardware Setup 
+#### Hardware Setup 
 
 The RGB LED contains three color channels, red, green, and blue. Each channel was connected to a separate GPIO output pin on the CC3200 microcontroller through a wire and resistor. These GPIO pins were configured as digital outputs, so the microcontroller can control which color channel is active. 
 
-Software Control 
+#### Software Control 
 
 The LED color is updated based on the current FSM state. Different color combinations are used to represent different system modes: 
 
-Green – RUNNING 
-
-Orange – PAUSED 
-
-Blue – BREAK 
-
-Off – IDLE 
-
-Blinking Red – ALARM 
+- Green = RUNNING 
+- Orange = PAUSED 
+- Blue = BREAK 
+- Off = IDLE 
+- Blinking Red = ALARM 
 
 During the alarm condition, the red LED blinks at a regular interval using the system timer. The LED remains active until the alarm is acknowledged by shaking the device. The RGB LED works together with the buzzer and OLED display to provide clear feedback about the system’s current state.  
 
