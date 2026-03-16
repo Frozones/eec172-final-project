@@ -167,6 +167,20 @@ During the alarm condition, the red LED blinks at a regular interval using the s
 
 ## Buzzer
 
+###Hardware Setup 
+
+####GPIO Pin Setup 
+
+An active buzzer was used to provide an audible alert when a timer finishes. We planned to use a passive buzzer, but unlike passive buzzers, an active buzzer contains an internal oscillator that generates the tone automatically when power is applied. Because of this, the buzzer only requires a simple digital control signal from the microcontroller.  
+
+The buzzer was connected using two pins, signal and ground. The signal pin was connected to package pin 60 on the CC3200 microcontroller, and the ground pin was connected to the board ground. The GPIO pin connected to the buzzer was configured as a digital output so the microcontroller could controll when the buzzer is active. 
+
+####Software Control 
+
+The buzzer is controlled through the system logic in the main program. When the timer reaches zero, the system enters the ALARM condition and activates the buzzer. Since the buzzer is an active buzzer, setting the GPIO pin high causes the buzzer to produce a tone automatically. To create a repeating alert sound, the program toggles the GPIO pin on and off at regular intervals using the system timer. This produces a beeping pattern while the alarm is active. 
+
+The buzzer continues to sound until the user acknowledges the alarm by shaking the device. Once the accelerometer detects a shake event, the buzzer is turned off and the system transitions to the next state. The buzzer works together with the RGB LED and OLED display to notify the user that a work or break timer has completed. The audible alert makes sure the user notices the alarm even if they are not directly looking at the device.  
+
 ## Stretch Goals
 - Speech to Text
 
