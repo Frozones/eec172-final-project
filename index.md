@@ -6,7 +6,17 @@ title: Final Project
 
 [//]: # just testing this # means header 1, #### means header 4
 
+## Quick Links
+---
 
+[Design](https://frozones.github.io/eec172-final-project/#design)
+[Implementation](https://frozones.github.io/eec172-final-project/#modules)
+[Stretch Goals](https://frozones.github.io/eec172-final-project/#stretch-goals)
+[Challenges](https://frozones.github.io/eec172-final-project/#challenges)
+[Bill of Materials](https://frozones.github.io/eec172-final-project/#bill-of-materials)
+[Video Demo](https://frozones.github.io/eec172-final-project/#video-demo)
+
+---
 # Overview
 
 Desk Buddy is a standalone embedded device designed to help students stay focused while studying by following a Pomodoro-style work and break cycle. The goal of the project was to build a small desk companion that helps users manage their focus time without needing to rely on a phone or computer. The device uses an OLED display to show the countdown timer and the current system mode, such as `SELECT`, `IDLE`, `RUN`, `BREAK`, `PAUSE`, and `ALARM`. The user interacts with the system using an IR remote, which allows them to choose a sprite, start a work session, pause the timer, reset the system, or switch to break mode without needing to use a terminal or connect to a computer.
@@ -34,6 +44,8 @@ The main loop is responsible for coordinating the system. It continuously checks
 The FSM is the center of the system’s behavior. It handles state transitions between SELECT, IDLE, RUNNING, PAUSED, BREAK, and the alarm behavior. Based on the current state, it controls the output of the system. The OLED display is updated to show the timer, current mode, and character sprites. The RGB LED and buzzer provide additional feedback, especially during the alarm condition when the timer has ended. The system also connects to AWS IoT through CC3200’s Wi-Fi capability. When a work session is completed, the program publishes a session event to AWS, which also triggers an email message to the user. This allows Desk Buddy to act not only as a local embedded timer, but also as a cloud-connected system that records completed sessions. Overall, the architecture is designed so that user inputs and timer events are processed by the main loop and FSM, while the display, alarm outputs, and AWS logging provide feedback to the user and external services
 
 # Implementation
+
+## Modules
 
 ## Finite State Machine
 
@@ -197,7 +209,7 @@ One additional issue was that we had to use a personal hotspot to enable the boa
 ## Bill of Materials
 ![FSM Diagram](BoM.png)
 
-# Video Demo
+## Video Demo
 
 <iframe src="https://drive.google.com/file/d/1mWv2rB5k2CuumA09IQE4GmYfAIGseW-c/preview" width="640" height="480"></iframe>
 
