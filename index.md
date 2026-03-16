@@ -199,8 +199,6 @@ One notable issue was that one of the microcontrollers worked with was unable to
 
 One additional issue was that we had to use a personal hotspot to enable the boards to connect to AWS. This was due to the school network requiring a credential system not managed by us. One of the personal hotspots we were using seemed not to connect to the board. It was found that name of the hotspot could not contain any special characters such as singular quotes. 
 
-ChatGPT was used to summarize documentation, providing guidance on understanding the ADC_demo. and walk through the creation of the Lambda function. ChatGPT was also used to help us draft, reword, and revise this report. All content was reviewed, edited, and verified by the authors. IEEE citations were created with the help of MyBib. 
-
 ## Bill of Materials
 ![FSM Diagram](BoM.png)
 
