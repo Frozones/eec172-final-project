@@ -132,17 +132,17 @@ Every 20 ms, the accelerometer is polled by reading the accelerometer values and
 
 ## AWS
 
-### Connection to AWS
+#### Connection to AWS
 
-The Desk Buddy system uses the CC3200’s built in Wi-Fi capability to connect to AWS IoT and log completed work sessions. This allows the device to send information about the user’s productivity sessions to the cloud and trigger notifications such as email alerts. Before communicating with AWS, the device must first connect to a wireless access point. The Wi-Fi credentials for the network are stored in the networking configuration file "common.h". 
+The Desk Buddy system uses the CC3200’s built in Wi-Fi capability to connect to AWS IoT and log completed work sessions. This allows the device to send information about the user’s productivity sessions to the cloud and trigger notifications such as email alerts. Before communicating with AWS, the device must first connect to a wireless access point. The Wi-Fi credentials for the network are stored in the networking configuration file `common.h`. 
 
 When the program starts, the network processor initializes and attempts to connect to the configured access point. Once the connection is established and the device obtains an IP address, it can begin communicating with AWS IoT services. After the network connection is established, the program calls the “awsInit()” function to initialize the AWS connection. This function sets up the secure communication channel between the CC3200 and the AWS IoT using the device certificates that were previously loaded onto the board. These certificates allow the AWS server to verify the identity of the device before allowing communication.  
 
-### AWS Thing Configuration 
+#### AWS Thing Configuration 
 
 Each device connected to AWS IoT is represented as a “Thing”. In this project, the CC3200 was registered as a Thing named Alex_CC3200_Board. The program communicates with the Thing Shadow endpoint associated with this device when sending updates. The Thing Shadow acts as a cloud representation of the device’s state. By sending HTTP requests to the Thing Shadow endpoint, the device can update its reported state or log events associated with the device. 
 
-# Publishing Session Data 
+#### Publishing Session Data 
 When a focus session is completed, the program constructs a JSON message containing information about the completed session. The JSON message is sent to AWS using the “awsPublish()” function, which transmits the data to the AWS IoT endpoint. Publishing the message to AWS triggers an automated email notification which indicates that a focus session has been completed. This feature shows that the embedded device can successfully communicate with a cloud service and log productivity events remotely. 
 
 ## RGB LED
