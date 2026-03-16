@@ -30,6 +30,8 @@ After the alarm is acknowledged, the next state depends on which timer finishes.
 
 ### System Architecture
 
+![System Architecture Diagram](System_Architecture.png)
+
 The Desk Buddy system is built around the CC3200 microcontroller, which acts as the main controller for the entire system. The system is organized into several connected parts: the timer system, input modules, finite state machine, output modules, and AWS logging. These components work together so the device can respond to user input, run the Pomodoro timer, and provide feedback through the display, buzzer, LED, and cloud logging. 
 
 The main loop is responsible for coordinating the system. It continuously checks events from the timer, IR receiver, and accelerometer, then passes those events to the finite state machine (FSM) and updates the outputs when needed. The SysTick module provides the main time base for the project by generating a 1 millisecond tick, which is used to keep track of the countdown timer, uptime, and alarm timing. TimerA0 is used separately for the IR receiver so that the widths of the incoming IR pulses can be measured accurately for decoding remote control commands. The IR receiver allows the user to control the device using an IR remote. The received signal is captured as edges, then decoded into command values using NEC-style decoding. These decoded commands are passed to the FSM, which decides how the system should change states. The accelerometer is read over I2C and is used for shake detection. When the timer finishes and the alarm is active, a shake event is sent to the FSM logic to acknowledge the alarm and move to the next phase.  
@@ -205,3 +207,18 @@ ChatGPT was used to summarize documentation, providing guidance on understanding
 # Video Demo
 
 <iframe src="https://drive.google.com/file/d/1OOU9uctRntvY3DELhxM5JtPAXOPRluTg/preview" width="640" height="480"></iframe>
+
+
+In this video, we’re demonstrating the final version of our project, Desk Buddy, which is a standalone Pomodoro device designed to help students stay on track during work and break sessions.
+
+When the device first starts, it displays the select screen, where the user can choose between four different sprite sets using the IR remote. Once a sprite set is selected, the system transitions to the main timer screen.
+
+From there, we start a work session using the IR remote. The OLED display shows the current mode and the countdown timer while the session is running. When the timer reaches zero, the system enters alarm mode. At that point, the RGB LED begins blinking red and the buzzer sounds to alert the user that the session has finished.
+
+To acknowledge the alarm, the user shakes the device. The onboard accelerometer detects this shake and uses it to move the system to the next phase. After a work session ends, the system transitions into break mode, and after the break timer finishes, the alarm activates again.
+
+In this demo, we repeat this process through four completed work sessions so we can demonstrate the leveling system. As the user completes more sessions, the sprite on the display updates to show different stages of progression. This allows us to show the level 1, level 2, and level 3 sprites during the demo. Notifications are sent through AWS to the user's email each time a session is completed, as well as the level status. 
+
+At the end of the video, we also demonstrate the manual controls available on the IR remote. These include the start, pause, reset, and break buttons, which allow the user to control the timer and switch between modes without interacting directly with the device.
+
+Overall, this demo shows the main functionality of Desk Buddy, including sprite selection, Pomodoro timer operation, alarm feedback through the LED and buzzer, shake detection using the accelerometer, and remote control through the IR interface.
