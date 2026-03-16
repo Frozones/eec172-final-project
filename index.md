@@ -110,7 +110,7 @@ To enable the I2C channel for reading the on-board accelerometer, we set up two 
 #### *Initialization*
 To enable the I2C peripheral, we call the `I2C_IF_OPEN()` function in fast mode (400 Kbps), which enables the I2C peripheral along with interrupts from the `i2c_if` file included in the `i2c_demo` file. 
 
-#### Shake Detection
+### Shake Detection
 
 #### *Reading the Accelerometer*
 To read the onboard BMA222 Bosch accelerometer, we access and store the register values `0x03` and `0x05`. These two 8-bit registers store the x-axis and y-axis acceleration data. The `I2C_IF_ReadFrom()` function reads the device address `0x18`, and we read four data bytes from the consecutive registers `0x02`-`0x05` and extract the needed values. These values are cast to a signed 8-bit integer and promoted to a 16-bit integer and stored in memory locations. 
