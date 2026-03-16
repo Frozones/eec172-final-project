@@ -94,7 +94,7 @@ Like `writeCommand`, except the DC signal is set to high to signify it as a data
 From the Adafruit open-source graphics library `Adafruit_GFX.c`, take advantage of the `drawChar()` function to display characters on our OLED. Our custom created `drawText()` function takes in a string and uses a for loop to display the characters. 
 
 #### *Draw Select Screen*
-The home screen that appears after initialization uses the “drawText()” function to list the names of the characters you can select. 
+The home screen that appears after initialization uses the `drawText()` function to list the names of the characters you can select. 
 
 #### *Draw Layout*
 
@@ -136,14 +136,14 @@ Every 20 ms, the accelerometer is polled by reading the accelerometer values and
 
 The Desk Buddy system uses the CC3200’s built in Wi-Fi capability to connect to AWS IoT and log completed work sessions. This allows the device to send information about the user’s productivity sessions to the cloud and trigger notifications such as email alerts. Before communicating with AWS, the device must first connect to a wireless access point. The Wi-Fi credentials for the network are stored in the networking configuration file `common.h`. 
 
-When the program starts, the network processor initializes and attempts to connect to the configured access point. Once the connection is established and the device obtains an IP address, it can begin communicating with AWS IoT services. After the network connection is established, the program calls the “awsInit()” function to initialize the AWS connection. This function sets up the secure communication channel between the CC3200 and the AWS IoT using the device certificates that were previously loaded onto the board. These certificates allow the AWS server to verify the identity of the device before allowing communication.  
+When the program starts, the network processor initializes and attempts to connect to the configured access point. Once the connection is established and the device obtains an IP address, it can begin communicating with AWS IoT services. After the network connection is established, the program calls the `awsInit()` function to initialize the AWS connection. This function sets up the secure communication channel between the CC3200 and the AWS IoT using the device certificates that were previously loaded onto the board. These certificates allow the AWS server to verify the identity of the device before allowing communication.  
 
 #### AWS Thing Configuration 
 
 Each device connected to AWS IoT is represented as a “Thing”. In this project, the CC3200 was registered as a Thing named Alex_CC3200_Board. The program communicates with the Thing Shadow endpoint associated with this device when sending updates. The Thing Shadow acts as a cloud representation of the device’s state. By sending HTTP requests to the Thing Shadow endpoint, the device can update its reported state or log events associated with the device. 
 
 #### Publishing Session Data 
-When a focus session is completed, the program constructs a JSON message containing information about the completed session. The JSON message is sent to AWS using the “awsPublish()” function, which transmits the data to the AWS IoT endpoint. Publishing the message to AWS triggers an automated email notification which indicates that a focus session has been completed. This feature shows that the embedded device can successfully communicate with a cloud service and log productivity events remotely. 
+When a focus session is completed, the program constructs a JSON message containing information about the completed session. The JSON message is sent to AWS using the `awsPublish()` function, which transmits the data to the AWS IoT endpoint. Publishing the message to AWS triggers an automated email notification which indicates that a focus session has been completed. This feature shows that the embedded device can successfully communicate with a cloud service and log productivity events remotely. 
 
 ## RGB LED
 
@@ -182,7 +182,8 @@ The buzzer is controlled through the system logic in the main program. When the 
 The buzzer continues to sound until the user acknowledges the alarm by shaking the device. Once the accelerometer detects a shake event, the buzzer is turned off and the system transitions to the next state. The buzzer works together with the RGB LED and OLED display to notify the user that a work or break timer has completed. The audible alert makes sure the user notices the alarm even if they are not directly looking at the device.  
 
 ## Stretch Goals
-- Speech to Text
+
+Ideas we had to implement new features included adding more components such as an HC-SR04 Ultrasonic Sensor to be used to detect when a phone was used during the study time and reset the timer. We had also planned to move gamification to the cloud controlled by the Lambda function along with the ability to search. 
 
 ## Challenges
 
@@ -201,6 +202,6 @@ ChatGPT was used to summarize documentation, providing guidance on understanding
 ## Bill of Materials
 ![FSM Diagram](BoM.png)
 
-
 # Video Demo
 
+<iframe src="https://drive.google.com/file/d/1OOU9uctRntvY3DELhxM5JtPAXOPRluTg/preview" width="640" height="480"></iframe>
