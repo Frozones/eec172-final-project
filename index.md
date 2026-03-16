@@ -201,6 +201,7 @@ One additional issue was that we had to use a personal hotspot to enable the boa
 
 <iframe src="https://drive.google.com/file/d/1mWv2rB5k2CuumA09IQE4GmYfAIGseW-c/preview" width="640" height="480"></iframe>
 
+Here is a link to the video demo if the video does not load: [Desk Buddy](https://drive.google.com/file/d/1mWv2rB5k2CuumA09IQE4GmYfAIGseW-c/preview)
 
 In this video, we’re demonstrating the final version of our project, Desk Buddy, which is a standalone Pomodoro device designed to help students stay on track during work and break sessions.
 
