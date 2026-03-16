@@ -207,7 +207,7 @@ ChatGPT was used to summarize documentation, providing guidance on understanding
 <iframe src="https://drive.google.com/file/d/1OOU9uctRntvY3DELhxM5JtPAXOPRluTg/preview" width="640" height="480"></iframe>
 
 
-For this video, we’re demonstrating the final version of our project, Desk Buddy, which is a standalone Pomodoro device designed to help students stay on track during work and break sessions.
+In this video, we’re demonstrating the final version of our project, Desk Buddy, which is a standalone Pomodoro device designed to help students stay on track during work and break sessions.
 
 When the device first starts, it displays the select screen, where the user can choose between four different sprite sets using the IR remote. Once a sprite set is selected, the system transitions to the main timer screen.
 
