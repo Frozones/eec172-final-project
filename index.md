@@ -208,9 +208,11 @@ ChatGPT was used to summarize documentation, providing guidance on understanding
 
 <!---<iframe src="https://drive.google.com/file/d/1OOU9uctRntvY3DELhxM5JtPAXOPRluTg/preview" width="640" height="480" muted="1"></iframe>--->
 
-<video src="https://github.com/Frozones/eec172-final-project/blob/688f03da07de50ae5e29e7f89777ef9a84360252/final.mp4" controls autoplay muted style="max-width: 100%;">
-    Your browser does not support the video tag.
+<video width="100%" height="auto" autoplay loop muted playsinline controls>
+  <source src="final.mp4" type="video/mp4">
+  Your browser does not support the video tag.
 </video>
+
 
 
 
