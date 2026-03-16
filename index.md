@@ -167,15 +167,15 @@ During the alarm condition, the red LED blinks at a regular interval using the s
 
 ## Buzzer
 
-###Hardware Setup 
+### Hardware Setup 
 
-####GPIO Pin Setup 
+#### GPIO Pin Setup 
 
 An active buzzer was used to provide an audible alert when a timer finishes. We planned to use a passive buzzer, but unlike passive buzzers, an active buzzer contains an internal oscillator that generates the tone automatically when power is applied. Because of this, the buzzer only requires a simple digital control signal from the microcontroller.  
 
 The buzzer was connected using two pins, signal and ground. The signal pin was connected to package pin 60 on the CC3200 microcontroller, and the ground pin was connected to the board ground. The GPIO pin connected to the buzzer was configured as a digital output so the microcontroller could controll when the buzzer is active. 
 
-####Software Control 
+#### Software Control 
 
 The buzzer is controlled through the system logic in the main program. When the timer reaches zero, the system enters the ALARM condition and activates the buzzer. Since the buzzer is an active buzzer, setting the GPIO pin high causes the buzzer to produce a tone automatically. To create a repeating alert sound, the program toggles the GPIO pin on and off at regular intervals using the system timer. This produces a beeping pattern while the alarm is active. 
 
@@ -185,6 +185,18 @@ The buzzer continues to sound until the user acknowledges the alarm by shaking t
 - Speech to Text
 
 ## Challenges
+
+The most significant challenge that we experienced was being able to choose a creative project that can be pursued in two weeks. Once we were able to decide to work on a desk buddy embedded system, progress was made much more quickly.  
+
+Challenges during the creation of the project were attempting to implement our stretch goals and sourcing components. Originally, we planned to pursue a speech-to-text function for our project. After spending a day working with the MAX 9814, we determined that it would not be feasible to complete this. This was due to the microphone insensitivity and unfamiliarity with the ADC demo provided by TI.  
+
+The stretch goal that was planned was the creation of a AWS Lambda function that our board would interact with. Changes in state to the shadow would be received, and the Lambda function would be able to take that information and push desired changes to the microcontroller based on set conditions. We were able to create the Lambda function and subscribe to it. However, we had difficulty receiving the desired state from the Lambda function due to incorrect parsing and interrupting our finite state machine.  
+
+One notable issue was that one of the microcontrollers worked with was unable to initialize the accelerometer given the same code. It was determined that it was not a GPIO pin issue as it was an on-board peripheral.  
+
+One additional issue was that we had to use a personal hotspot to enable the boards to connect to AWS. This was due to the school network requiring a credential system not managed by us. One of the personal hotspots we were using seemed not to connect to the board. It was found that name of the hotspot could not contain any special characters such as singular quotes. 
+
+ChatGPT was used to summarize documentation, providing guidance on understanding the ADC_demo. and walk through the creation of the Lambda function. ChatGPT was also used to help us draft, reword, and revise this report. All content was reviewed, edited, and verified by the authors. IEEE citations were created with the help of MyBib. 
 
 ## Bill of Materials
 - CC3200 Board
