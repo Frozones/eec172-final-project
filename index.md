@@ -199,7 +199,8 @@ One additional issue was that we had to use a personal hotspot to enable the boa
 ChatGPT was used to summarize documentation, providing guidance on understanding the ADC_demo. and walk through the creation of the Lambda function. ChatGPT was also used to help us draft, reword, and revise this report. All content was reviewed, edited, and verified by the authors. IEEE citations were created with the help of MyBib. 
 
 ## Bill of Materials
-- CC3200 Board
+![FSM Diagram](BoM.png)
+
 
 # Video Demo
 
